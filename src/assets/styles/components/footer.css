@@ -1,0 +1,57 @@
+@import url('../general.css');
+
+footer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background-color: #242423;
+  color: #FFFFFF;
+  padding: 1.8rem 1.2rem;
+  font-size: 1rem;
+}
+
+footer h3 {
+  margin-bottom: 1.5rem;
+}
+
+footer a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 1rem;
+  padding-left: 0.6rem;
+}
+
+footer a:hover {
+  color: #D3D3D3;
+}
+
+footer i {
+  font-size: 1.5rem;
+  padding-left: 0.6rem;
+}
+
+footer i:hover {
+  color: rgba(224, 222, 222, 0.8);
+}
+
+footer div:nth-child(2) h3 {
+  margin-bottom: 1rem;
+}
+
+.footer-navigation {
+  text-decoration: none;
+}
+
+.footer-navigation ul {
+  line-height: 2;
+}
+
+.inline ul li {
+  display: inline-block;
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+    grid-template-columns: repeat(1, 1fr);
+    text-align: center;
+  }
+}
