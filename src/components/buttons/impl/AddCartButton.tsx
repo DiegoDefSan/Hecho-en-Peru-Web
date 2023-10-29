@@ -6,7 +6,7 @@ export const AddCartButton = () => {
     backgroundColor: "#242423",
     color: "#fff",
     border: "none",
-    width: "11.2rem",
+    minWidth: "8.2rem",
     height: "2.5rem",
     fontSize: "0.9rem",
     fontWeight: 500,
