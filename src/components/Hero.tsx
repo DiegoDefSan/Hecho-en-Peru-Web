@@ -6,9 +6,10 @@ interface Props {
   backgroundImgName: string;
   title: string;
   description: string;
+  additionalElement?: React.ReactNode;
 }
 
-export const Hero = ({ backgroundImgName, title, description }: Props) => {
+export const Hero = ({ backgroundImgName, title, description, additionalElement }: Props) => {
 
   const backgroundImgLocationPath = '../../public/images/hero_section/';
 
@@ -27,6 +28,9 @@ export const Hero = ({ backgroundImgName, title, description }: Props) => {
             <p>
               {description}
             </p>
+            {
+              additionalElement
+            }
           </div>
         </div>
       </div>
