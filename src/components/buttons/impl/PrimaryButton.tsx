@@ -1,4 +1,4 @@
-import { BaseButton } from "./BaseButton";
+import { BaseButton } from "../BaseButton";
 
 interface Props {
   text: string;
