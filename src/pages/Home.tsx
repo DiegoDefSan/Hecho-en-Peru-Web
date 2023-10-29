@@ -2,6 +2,7 @@ import React from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Hero } from "../components/Hero";
+import { PrimaryButton } from "../components/buttons/PrimaryButton";
 
 export const Home = () => {
   return (
@@ -14,6 +15,7 @@ export const Home = () => {
         creations. selection of unique and authentic creations. Explore our catalog and discover the beauty and
         charm of handmade crafts. the beauty and charm of handmade crafts and be captivated by the creativity and
         talent of our creativity and talent of our artisans!"
+        additionalElement={PrimaryButton({ text: "See catalog", onClickFunction: () => { } })}
       />
       <Footer />
     </div>
