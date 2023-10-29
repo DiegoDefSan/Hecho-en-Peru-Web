@@ -1,4 +1,4 @@
-import React from "react";
+import { BaseButton } from "./BaseButton";
 
 interface Props {
   text: string;
@@ -6,8 +6,6 @@ interface Props {
 }
 
 export const PrimaryButton = ({ text, onClickFunction }: Props) => {
-
-  const [isHover, setIsHover] = React.useState(false);
 
   const primaryButtonStyles = {
     backgroundColor: "#E9806E",
@@ -29,14 +27,12 @@ export const PrimaryButton = ({ text, onClickFunction }: Props) => {
   }
 
   return (
-    <button
+    <BaseButton
       className="primary-button"
-      onClick={onClickFunction}
-      style={isHover ? { ...primaryButtonStyles, ...onHoverStyles } : primaryButtonStyles}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-    >
-      {text}
-    </button>
+      text={text}
+      onClickFunction={onClickFunction}
+      defaultStyles={primaryButtonStyles}
+      onHoverStyles={onHoverStyles}
+    />
   )
 }
