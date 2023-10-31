@@ -5,6 +5,7 @@ import '../assets/styles/components/catalog_container.css';
 import { SortByFilterComponent } from "./filters/SortByFilterComponent";
 import { CategoryFilterComponent } from "./filters/CategoryFilterComponent";
 import { RegionFilterComponent } from "./filters/RegionsFilterComponent";
+import { PriceRangeFilterComponent } from "./filters/PriceRangeFilterComponent";
 
 interface CategoryOption {
   name: string;
@@ -20,6 +21,8 @@ interface FilterInterface {
   sortBy: string;
   categories: CategoryOption[];
   regions: RegionOption[];
+  minPrice: number;
+  maxPrice: number;
 }
 
 export const CatalogContainer = () => {
@@ -38,6 +41,8 @@ export const CatalogContainer = () => {
       { name: "Ayacucho", checked: true },
       { name: "Moquegua", checked: true },
     ],
+    minPrice: 10,
+    maxPrice: 1500,
   });
 
   function handleSortingFilterChange(sortingBy: string) {
@@ -61,11 +66,20 @@ export const CatalogContainer = () => {
     });
   }
 
+  function handlePriceFilterChange(minPriceSelected: number, maxPriceSelected: number) {
+    setFilterData({
+      ...filterData,
+      minPrice: minPriceSelected,
+      maxPrice: maxPriceSelected,
+    });
+  }
+
 
   return (
     <div className="catalog-container row">
       <div className="filter col-3">
         <h3>Apply filter</h3>
+        <PriceRangeFilterComponent minPrice={filterData.minPrice} maxPrice={filterData.maxPrice} handleChange={handlePriceFilterChange} />
         <SortByFilterComponent sortBy={filterData.sortBy} handleChange={handleSortingFilterChange} />
         <CategoryFilterComponent categoriesList={filterData.categories} handleChange={handleCategoriesFilterChange} />
         <RegionFilterComponent categoriesList={filterData.regions} handleChange={handleRegionsFilterChange} />
