@@ -1,0 +1,109 @@
+@import url('../general.css');
+
+.catalog-container {
+  width: 90%;
+  margin: 2% auto;
+}
+
+.catalog-container .filter {
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: #F5F5F5;
+  border-radius: 0.8rem;
+}
+
+.catalog-container .filter h3 {
+  margin: 1rem 0;
+}
+
+.fieldset-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: .9rem;
+}
+
+.fieldset-container legend {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 8rem;
+  opacity: 1;
+}
+
+.options-container::-webkit-scrollbar {
+  width: 0.5rem;
+  background: #CFC9C9;
+  border-radius: 0.5rem;
+}
+
+.options-container::-webkit-scrollbar-thumb {
+  background-color: #ACDE7B;
+  border-radius: 0.5rem;
+}
+
+.options-container::-moz-scrollbar {
+  width: 0.5rem;
+  background: #CFC9C9;
+  border-radius: 0.5rem;
+}
+
+.options-container::-moz-scrollbar-thumb {
+  background-color: #ACDE7B;
+  border-radius: 0.5rem;
+}
+
+.options-container input {
+  cursor: pointer;
+  height: 1em;
+  width: 1em;
+  border: solid black 0.1rem;
+  transform: translateY(0.25em);
+  display: grid;
+  place-content: center;
+  margin-inline: 0.5rem;
+}
+
+.options-container input[type=radio] {
+  border-radius: 50%;
+}
+
+.options-container .radio-input-container,
+.checkbox-input-container {
+  display: flex;
+  flex-direction: row;
+  padding: 0.35rem 0;
+}
+
+.options-container input[type=radio] {
+  -webkit-appearance: none;
+  border: 0.1rem solid #000;
+}
+
+.options-container input[type=radio]:checked {
+  background-color: #ACDE7B;
+  border: #7fab53 0.1rem solid;
+}
+
+.options-container input[type=checkbox] {
+  -webkit-appearance: none;
+  border: 0.1rem solid #000;
+}
+
+.options-container input[type=checkbox]:checked {
+  background-color: #ACDE7B;
+  border: #7fab53 0.1rem solid;
+}
+
+
+#sorting-filter {
+  overflow: hidden;
+}
+
+#categories-filter,
+#regions-filter {
+  overflow-y: scroll;
+}
