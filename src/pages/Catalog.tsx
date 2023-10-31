@@ -2,6 +2,7 @@ import React from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Hero } from "../components/Hero";
+import { CatalogContainer } from "../components/CatalogContainer";
 
 export const Catalog = () => {
   return (
@@ -16,6 +17,9 @@ export const Catalog = () => {
         heritage of our artisans. Immerse yourself in the beauty and authenticity of traditional
         crafts."
       />
+
+      <CatalogContainer />
+
       <Footer />
     </div>
   )
