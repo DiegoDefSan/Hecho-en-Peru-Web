@@ -6,13 +6,13 @@ interface RegionOption {
 }
 
 interface Props {
-  categoriesList: RegionOption[];
+  regionsList: RegionOption[];
   handleChange: Function;
 }
 
 export const RegionFilterComponent = (props: Props) => {
 
-  const [regionsAttribute, setRegionsAttribute] = React.useState<RegionOption[]>(props.categoriesList);
+  const [regionsAttribute, setRegionsAttribute] = React.useState<RegionOption[]>(props.regionsList);
 
   function changeRegionsList(event: React.ChangeEvent<HTMLInputElement>) {
     const { name } = event.target;

@@ -84,7 +84,7 @@ export const CatalogContainer = (props: ApiProps) => {
         <PriceRangeFilterComponent minPrice={filterData.minPrice} maxPrice={filterData.maxPrice} handleChange={handlePriceFilterChange} />
         <SortByFilterComponent sortBy={filterData.sortBy} handleChange={handleSortingFilterChange} />
         <CategoryFilterComponent categoriesList={filterData.categories} handleChange={handleCategoriesFilterChange} />
-        <RegionFilterComponent categoriesList={filterData.regions} handleChange={handleRegionsFilterChange} />
+        <RegionFilterComponent regionsList={filterData.regions} handleChange={handleRegionsFilterChange} />
       </div>
 
       <div className="products-container col-md-9 col-sm-12 row">
