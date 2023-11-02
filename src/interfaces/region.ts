@@ -1,5 +1,5 @@
 interface Region {
-  id: string;
+  idRegion: string;
   name: string;
 }
 
