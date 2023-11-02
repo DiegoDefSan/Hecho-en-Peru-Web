@@ -7,6 +7,7 @@ import { CategoryFilterComponent } from "./filters/CategoryFilterComponent";
 import { RegionFilterComponent } from "./filters/RegionsFilterComponent";
 import { PriceRangeFilterComponent } from "./filters/PriceRangeFilterComponent";
 import Category from "../interfaces/category";
+import Region from "../interfaces/region";
 
 interface CategoryOption {
   key: string;
@@ -15,6 +16,7 @@ interface CategoryOption {
 }
 
 interface RegionOption {
+  key: string;
   name: string;
   checked: boolean;
 }
@@ -29,20 +31,21 @@ interface FilterInterface {
 
 interface ApiProps {
   categories: Category[];
+  regions: Region[];
 }
 
 export const CatalogContainer = (props: ApiProps) => {
 
   const [filterData, setFilterData] = React.useState<FilterInterface>({
     sortBy: "rating-desc",
-    categories: props.categories.map((category) => ({ key: category.idCategory, name: category.name, checked: true })),
-    regions: [
-      { name: "Arequipa", checked: true },
-      { name: "Cusco", checked: true },
-      { name: "Lima", checked: true },
-      { name: "Ayacucho", checked: true },
-      { name: "Moquegua", checked: true },
-    ],
+    categories: props.categories
+      .map((category) => (
+        { key: category.idCategory, name: category.name, checked: true }
+      )),
+    regions: props.regions
+      .map((region) => (
+        { key: region.idRegion, name: region.name, checked: true }
+      )),
     minPrice: 10,
     maxPrice: 1500,
   });
