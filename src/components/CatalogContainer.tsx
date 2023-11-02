@@ -8,6 +8,7 @@ import { RegionFilterComponent } from "./filters/RegionsFilterComponent";
 import { PriceRangeFilterComponent } from "./filters/PriceRangeFilterComponent";
 import Category from "../interfaces/category";
 import Region from "../interfaces/region";
+import Product from "../interfaces/product";
 
 interface CategoryOption {
   key: string;
@@ -32,6 +33,7 @@ interface FilterInterface {
 interface ApiProps {
   categories: Category[];
   regions: Region[];
+  products: Product[];
 }
 
 export const CatalogContainer = (props: ApiProps) => {
@@ -79,6 +81,19 @@ export const CatalogContainer = (props: ApiProps) => {
     });
   }
 
+  const productsContainerElementHTML = props.products.map((product) => {
+    return (
+      <ProductContainer
+        key={product.idProduct}
+        productImgName={product.imagePath}
+        productImgAlt={product.name}
+        productTitle={product.name}
+        productPrice={product.price}
+        productRating={product.rating}
+      />
+    );
+  });
+
 
   return (
     <div className="catalog-container row">
@@ -91,69 +106,7 @@ export const CatalogContainer = (props: ApiProps) => {
       </div>
 
       <div className="products-container col-md-9 col-sm-12 row">
-        <ProductContainer
-          productImgName="poncho-lana-main.jpg"
-          productImgAlt="poncho de lana"
-          productTitle="Poncho de lana"
-          productPrice={150.00}
-          productRating={4.5}
-        />
-        <ProductContainer
-          productImgName="poncho-lana-main.jpg"
-          productImgAlt="poncho de lana"
-          productTitle="Poncho de lana"
-          productPrice={150.00}
-          productRating={4.5}
-        />
-        <ProductContainer
-          productImgName="poncho-lana-main.jpg"
-          productImgAlt="poncho de lana"
-          productTitle="Poncho de lana"
-          productPrice={150.00}
-          productRating={4.5}
-        />
-        <ProductContainer
-          productImgName="poncho-lana-main.jpg"
-          productImgAlt="poncho de lana"
-          productTitle="Poncho de lana"
-          productPrice={150.00}
-          productRating={4.5}
-        />
-        <ProductContainer
-          productImgName="poncho-lana-main.jpg"
-          productImgAlt="poncho de lana"
-          productTitle="Poncho de lana"
-          productPrice={150.00}
-          productRating={4.5}
-        />
-        <ProductContainer
-          productImgName="poncho-lana-main.jpg"
-          productImgAlt="poncho de lana"
-          productTitle="Poncho de lana"
-          productPrice={150.00}
-          productRating={4.5}
-        />
-        <ProductContainer
-          productImgName="poncho-lana-main.jpg"
-          productImgAlt="poncho de lana"
-          productTitle="Poncho de lana"
-          productPrice={150.00}
-          productRating={4.5}
-        />
-        <ProductContainer
-          productImgName="poncho-lana-main.jpg"
-          productImgAlt="poncho de lana"
-          productTitle="Poncho de lana"
-          productPrice={150.00}
-          productRating={4.5}
-        />
-        <ProductContainer
-          productImgName="poncho-lana-main.jpg"
-          productImgAlt="poncho de lana"
-          productTitle="Poncho de lana"
-          productPrice={150.00}
-          productRating={4.5}
-        />
+        {productsContainerElementHTML}
       </div>
     </div>
   )
