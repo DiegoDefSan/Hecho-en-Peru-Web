@@ -17,7 +17,9 @@ export const PriceRangeFilterComponent = (props: Props) => {
     const { name, value } = event.target;
     setPriceRange({
       ...priceRange,
-      [name]: value !== '' ? parseInt(value) : 0,
+      [name]: name === 'minPrice' ?
+        (value === '' ? 0 : parseInt(value)) :
+        (parseInt(value) <= priceRange.minPrice ? priceRange.minPrice + 1 : parseInt(value)),
     });
 
 
