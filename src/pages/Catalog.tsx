@@ -3,8 +3,19 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Hero } from "../components/Hero";
 import { CatalogContainer } from "../components/CatalogContainer";
+import useCategories from "../hooks/useCategories";
 
 export const Catalog = () => {
+
+  const {
+    data: categories,
+    isLoading
+  } = useCategories();
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div>
       <Header activeLink="catalog" />
@@ -18,7 +29,9 @@ export const Catalog = () => {
         crafts."
       />
 
-      <CatalogContainer />
+      <CatalogContainer
+        categories={categories!}
+      />
 
       <Footer />
     </div>
