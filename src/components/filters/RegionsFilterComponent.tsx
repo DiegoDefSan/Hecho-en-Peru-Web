@@ -1,6 +1,7 @@
 import React from "react";
 
 interface RegionOption {
+  key: string;
   name: string;
   checked: boolean;
 }
@@ -19,7 +20,7 @@ export const RegionFilterComponent = (props: Props) => {
 
     const newRegionsList = regionsAttribute.map((region: any) => {
       if (region.name === name) {
-        return { name: region.name, checked: !region.checked }
+        return { key: region.key, name: region.name, checked: !region.checked }
       }
       return region;
     });
@@ -29,60 +30,26 @@ export const RegionFilterComponent = (props: Props) => {
     props.handleChange(newRegionsList);
   }
 
+  const regionsInputElementHTML = props.regionsList.map((regionProp: RegionOption) => {
+    return (
+      <div className="checkbox-input-container" key={`container-${regionProp.key}`}>
+        <input
+          type="checkbox"
+          id={regionProp.name.toLowerCase()}
+          name={regionProp.name}
+          checked={regionsAttribute.find((region: RegionOption) => region.name === regionProp.name)?.checked}
+          onChange={changeRegionsList}
+        />
+        <label htmlFor={regionProp.name.toLowerCase()}>{regionProp.name}</label>
+      </div>
+    );
+  });
+
   return (
     <fieldset className="fieldset-container">
       <legend>Regions</legend>
       <div className="options-container" id="categories-filter">
-        <div className="checkbox-input-container">
-          <input
-            type="checkbox"
-            id="region"
-            name="Arequipa"
-            checked={regionsAttribute.find((region: RegionOption) => region.name === "Arequipa")?.checked}
-            onChange={changeRegionsList}
-          />
-          <label htmlFor="region">Arequipa</label>
-        </div>
-        <div className="checkbox-input-container">
-          <input
-            type="checkbox"
-            id="region"
-            name="Cusco"
-            checked={regionsAttribute.find((region: RegionOption) => region.name === "Cusco")?.checked}
-            onChange={changeRegionsList}
-          />
-          <label htmlFor="region">Cusco</label>
-        </div>
-        <div className="checkbox-input-container">
-          <input
-            type="checkbox"
-            id="region"
-            name="Lima"
-            checked={regionsAttribute.find((region: RegionOption) => region.name === "Lima")?.checked}
-            onChange={changeRegionsList}
-          />
-          <label htmlFor="region">Lima</label>
-        </div>
-        <div className="checkbox-input-container">
-          <input
-            type="checkbox"
-            id="region"
-            name="Ayacucho"
-            checked={regionsAttribute.find((region: RegionOption) => region.name === "Ayacucho")?.checked}
-            onChange={changeRegionsList}
-          />
-          <label htmlFor="region">Ayacucho</label>
-        </div>
-        <div className="checkbox-input-container">
-          <input
-            type="checkbox"
-            id="region"
-            name="Moquegua"
-            checked={regionsAttribute.find((region: RegionOption) => region.name === "Moquegua")?.checked}
-            onChange={changeRegionsList}
-          />
-          <label htmlFor="region">Moquegua</label>
-        </div>
+        {regionsInputElementHTML}
       </div>
     </fieldset>
   )
