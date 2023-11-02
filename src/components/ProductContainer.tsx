@@ -12,7 +12,7 @@ interface Props {
 
 export const ProductContainer = (props: Props) => {
 
-  const productImageLocationPath = '../../public/images/products/' + props.productImgName;
+  const productImageLocationPath = '/images/products/' + props.productImgName;
 
   return (
     <div className='product-container col-lg-4 col-md-4 col-sm-6 col-12'>
