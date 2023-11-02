@@ -5,6 +5,7 @@ import { Hero } from "../components/Hero";
 import { CatalogContainer } from "../components/CatalogContainer";
 import useCategories from "../hooks/useCategories";
 import useRegions from "../hooks/useRegions";
+import useProducts from "../hooks/useProducts";
 
 export const Catalog = () => {
 
@@ -18,7 +19,12 @@ export const Catalog = () => {
     isLoading: isLoadingRegions
   } = useRegions();
 
-  if (isLoadingCategories || isLoadingRegions) {
+  const {
+    data: products,
+    isLoading: isLoadingProducts
+  } = useProducts();
+
+  if (isLoadingCategories || isLoadingRegions || isLoadingProducts) {
     return <div>Loading...</div>
   }
 
@@ -38,6 +44,7 @@ export const Catalog = () => {
       <CatalogContainer
         categories={categories!}
         regions={regions!}
+        products={products!}
       />
 
       <Footer />
