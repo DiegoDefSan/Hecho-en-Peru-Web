@@ -11,7 +11,7 @@ interface Props {
 
 export const Hero = ({ backgroundImgName, title, description, additionalElement }: Props) => {
 
-  const backgroundImgLocationPath = '../../public/images/hero_section/';
+  const backgroundImgLocationPath = '/images/hero_section/';
 
   const backgroundImgStyles = {
     backgroundImage: `url(${backgroundImgLocationPath}${backgroundImgName})`,
