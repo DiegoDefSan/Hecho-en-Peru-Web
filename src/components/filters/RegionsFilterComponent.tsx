@@ -31,7 +31,7 @@ export const RegionFilterComponent = (props: Props) => {
 
   return (
     <fieldset className="fieldset-container">
-      <legend>Categories</legend>
+      <legend>Regions</legend>
       <div className="options-container" id="categories-filter">
         <div className="checkbox-input-container">
           <input
