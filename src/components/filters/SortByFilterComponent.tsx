@@ -31,7 +31,7 @@ export const SortByFilterComponent = (props: Props) => {
             checked={sortByAttribute === "price-desc"}
             onChange={changeSortByValue}
           />
-          <label htmlFor="sort-price-desc">Highest to lowest</label>
+          <label htmlFor="sort-price-desc">Highest to lowest price</label>
         </div>
 
         <div className="radio-input-container">
@@ -43,7 +43,7 @@ export const SortByFilterComponent = (props: Props) => {
             checked={sortByAttribute === "price-asc"}
             onChange={changeSortByValue}
           />
-          <label htmlFor="sort-price-asc"> Lowest to highest </label>
+          <label htmlFor="sort-price-asc">Lowest to highest price</label>
         </div>
 
         <div className="radio-input-container">
