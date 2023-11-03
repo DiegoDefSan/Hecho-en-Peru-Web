@@ -1,62 +1,86 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
-  minPrice: number;
-  maxPrice: number;
+  priceRange: string;
   handleChange: Function;
 }
 
 export const PriceRangeFilterComponent = (props: Props) => {
 
-  const [priceRange, setPriceRange] = React.useState({
-    minPrice: props.minPrice,
-    maxPrice: props.maxPrice,
-  });
+  const [priceRangeAttribute, setPriceRangeAttribute] = React.useState<string>(props.priceRange);
 
-  function handlePriceRangeChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target;
-    setPriceRange({
-      ...priceRange,
-      [name]: name === 'minPrice' ?
-        (value === '' ? 0 : parseInt(value)) :
-        (parseInt(value) <= priceRange.minPrice ? priceRange.minPrice + 1 : parseInt(value)),
-    });
+  function changePriceRangeValue(event: React.ChangeEvent<HTMLInputElement>) {
+    const { value } = event.target;
 
+    setPriceRangeAttribute(value);
 
-    props.handleChange(
-      priceRange.minPrice,
-      priceRange.maxPrice,
-    );
+    props.handleChange(value);
   }
 
   return (
-    <fieldset className="fieldset-container" >
+    <fieldset className="fieldset-container">
       <legend>Price range</legend>
+      <div className="options-container" id="price-range-filter">
 
-      <div className="options-container" id='price-filter'>
-        <div className="number-input-container">
-          <span>Min</span>
+        <div className="radio-input-container">
           <input
-            type="number"
-            placeholder="Min price"
-            name='minPrice'
-            value={priceRange.minPrice}
-            onChange={handlePriceRangeChange}
+            type="radio"
+            id="price-range-1"
+            name="priceRange"
+            value="all"
+            checked={priceRangeAttribute === "all"}
+            onChange={changePriceRangeValue}
           />
+          <label htmlFor="price-range-1">All</label>
         </div>
-        <br />
-        <div className="number-input-container">
-          <span>Max</span>
+        <div className="radio-input-container">
           <input
-            type="number"
-            placeholder="Max price"
-            name='maxPrice'
-            value={priceRange.maxPrice}
-            onChange={handlePriceRangeChange}
+            type="radio"
+            id="price-range-1"
+            name="priceRange"
+            value="0-99"
+            checked={priceRangeAttribute === "0-99"}
+            onChange={changePriceRangeValue}
           />
+          <label htmlFor="price-range-1">$0 to $99</label>
+        </div>
+
+        <div className="radio-input-container">
+          <input
+            type="radio"
+            id="price-range-2"
+            name="priceRange"
+            value="100-199"
+            checked={priceRangeAttribute === "100-199"}
+            onChange={changePriceRangeValue}
+          />
+          <label htmlFor="price-range-2">$100 to $199</label>
+        </div>
+
+        <div className="radio-input-container">
+          <input
+            type="radio"
+            id="price-range-3"
+            name="priceRange"
+            value="200-299"
+            checked={priceRangeAttribute === "200-299"}
+            onChange={changePriceRangeValue}
+          />
+          <label htmlFor="price-range-3">$200 to $299</label>
+        </div>
+
+        <div className="radio-input-container">
+          <input
+            type="radio"
+            id="price-range-4"
+            name="priceRange"
+            value="300-1000"
+            checked={priceRangeAttribute === "300-1000"}
+            onChange={changePriceRangeValue}
+          />
+          <label htmlFor="price-range-4">$300 to more</label>
         </div>
       </div>
-
     </fieldset>
   )
 }
