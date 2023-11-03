@@ -7,25 +7,6 @@ import { ProductsContainer } from "./ProductsContainer";
 
 import '../assets/styles/components/catalog_container.css';
 
-interface CategoryOption {
-  key: string;
-  name: string;
-  checked: boolean;
-}
-
-interface RegionOption {
-  key: string;
-  name: string;
-  checked: boolean;
-}
-
-interface FilterInterface {
-  sortBy: string;
-  priceRange: string;
-  categories: CategoryOption[];
-  regions: RegionOption[];
-}
-
 interface ApiProps {
   categories: Category[];
   regions: Region[];
