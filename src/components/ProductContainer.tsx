@@ -18,7 +18,9 @@ export const ProductContainer = (props: Props) => {
     <div className='product-container col-lg-4 col-md-4 col-sm-6 col-12'>
 
       <div className="product-subcontainer" id='product-image'>
-        <img src={`${productImageLocationPath}`} className="product-img" alt={`${props.productImgAlt}`} />
+        <div className="product-img-subcontainer">
+          <img src={`${productImageLocationPath}`} className="product-img" alt={`${props.productImgAlt}`} />
+        </div>
         <div className="rating">
           <i className="fa-solid fa-star"></i>
           <span className="rating-value">{props.productRating}</span>
