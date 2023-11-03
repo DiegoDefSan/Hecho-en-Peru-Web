@@ -23,7 +23,10 @@ export const PriceRangeFilterComponent = (props: Props) => {
     });
 
 
-    props.handleChange(priceRange);
+    props.handleChange(
+      priceRange.minPrice,
+      priceRange.maxPrice,
+    );
   }
 
   return (
