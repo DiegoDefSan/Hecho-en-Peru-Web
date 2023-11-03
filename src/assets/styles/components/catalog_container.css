@@ -58,7 +58,7 @@
 .options-container {
   display: flex;
   flex-direction: column;
-  max-height: 8rem;
+  max-height: 10.5rem;
   opacity: 1;
 }
 
