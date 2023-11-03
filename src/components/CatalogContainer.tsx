@@ -1,14 +1,11 @@
 import React from "react";
-import { ProductContainer } from "./ProductContainer";
-
-import '../assets/styles/components/catalog_container.css';
-import { SortByFilterComponent } from "./filters/SortByFilterComponent";
-import { CategoryFilterComponent } from "./filters/CategoryFilterComponent";
-import { RegionFilterComponent } from "./filters/RegionsFilterComponent";
-import { PriceRangeFilterComponent } from "./filters/PriceRangeFilterComponent";
 import Category from "../interfaces/category";
 import Region from "../interfaces/region";
 import Product from "../interfaces/product";
+import { FiltersContainer } from "./FiltersContainer";
+import { ProductsContainer } from "./ProductsContainer";
+
+import '../assets/styles/components/catalog_container.css';
 
 interface CategoryOption {
   key: string;
@@ -39,7 +36,7 @@ export const CatalogContainer = (props: ApiProps) => {
 
   const [products, setProducts] = React.useState<Product[]>(props.products);
 
-  const [filterData, setFilterData] = React.useState<FilterInterface>({
+  const [filterData, setFilterData] = React.useState({
     sortBy: "rating-desc",
     priceRange: "all",
     categories: props.categories
@@ -51,35 +48,6 @@ export const CatalogContainer = (props: ApiProps) => {
         { key: region.idRegion, name: region.name, checked: true }
       )),
   });
-
-
-  function handlePriceFilterChange(priceRange: string) {
-    setFilterData({
-      ...filterData,
-      priceRange: priceRange,
-    });
-  }
-
-  function handleSortingFilterChange(sortingBy: string) {
-    setFilterData({
-      ...filterData,
-      sortBy: sortingBy,
-    });
-  }
-
-  function handleCategoriesFilterChange(categoriesList: CategoryOption[]) {
-    setFilterData({
-      ...filterData,
-      categories: categoriesList,
-    });
-  }
-
-  function handleRegionsFilterChange(regionsList: RegionOption[]) {
-    setFilterData({
-      ...filterData,
-      regions: regionsList,
-    });
-  }
 
   function filterProducts() {
 
@@ -124,45 +92,17 @@ export const CatalogContainer = (props: ApiProps) => {
     filterProducts();
   }, [filterData]);
 
-  const productsContainerElementHTML = products.map((product) => {
-    return (
-      <ProductContainer
-        key={product.idProduct}
-        productImgName={product.imagePath}
-        productImgAlt={product.name}
-        productTitle={product.name}
-        productPrice={product.price}
-        productRating={product.rating}
-      />
-    );
-  });
-
 
   return (
     <div className="catalog-container row">
-      <div className="filter col-3">
-        <h3>Apply filter</h3>
-        <PriceRangeFilterComponent
-          priceRange={filterData.priceRange}
-          handleChange={handlePriceFilterChange}
-        />
-        <SortByFilterComponent
-          sortBy={filterData.sortBy}
-          handleChange={handleSortingFilterChange}
-        />
-        <CategoryFilterComponent
-          categoriesList={filterData.categories}
-          handleChange={handleCategoriesFilterChange}
-        />
-        <RegionFilterComponent
-          regionsList={filterData.regions}
-          handleChange={handleRegionsFilterChange}
-        />
-      </div>
+      <FiltersContainer
+        filterData={filterData}
+        setFilterData={setFilterData}
+      />
 
-      <div className="products-container col-md-9 col-sm-12 row">
-        {productsContainerElementHTML}
-      </div>
+      <ProductsContainer
+        products={products}
+      />
     </div>
   )
 }
