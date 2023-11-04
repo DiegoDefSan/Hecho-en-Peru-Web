@@ -1,6 +1,6 @@
-import React from 'react';
-import { AddCartButton } from './buttons/impl/AddCartButton';
+import { useContext } from 'react';
 import '../assets/styles/components/product_container.css'
+import { CartContext } from '../contexts/CartContext';
 
 interface Props {
   productImgName: string;
@@ -32,7 +32,12 @@ export const ProductContainer = (props: Props) => {
           <h4 className="product-title">{props.productTitle}</h4>
           <p className="product-price">$ {props.productPrice.toFixed(2)}</p>
         </div>
-        <AddCartButton />
+        <button
+          className="add-cart-button"
+          onClick={() => { }}
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   )

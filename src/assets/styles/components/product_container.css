@@ -77,3 +77,22 @@
   font-size: 1rem;
   font-weight: 600;
 }
+
+.add-cart-button {
+  background-color: #242423;
+  color: #fff;
+  border: none;
+  min-width: 8.2rem;
+  height: 2.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0 0.6rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-cart-button:hover {
+  background-color: #0e0e0e;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1019607843);
+}
