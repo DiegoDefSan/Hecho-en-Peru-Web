@@ -6,16 +6,9 @@ interface Props {
 }
 
 export const ProductsContainer = (props: Props) => {
-  const productsContainerElementHTML = props.products.map((product) => {
+  const productsContainerElementHTML = props.products.map((product: Product) => {
     return (
-      <ProductContainer
-        key={product.idProduct}
-        productImgName={product.imagePath}
-        productImgAlt={product.name}
-        productTitle={product.name}
-        productPrice={product.price}
-        productRating={product.rating}
-      />
+      <ProductContainer key={product.idProduct} product={product} />
     );
   });
 
