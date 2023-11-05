@@ -22,7 +22,7 @@ export const ProductContainer = ({ product }: Props) => {
   const productImageLocationPath = '/images/products/' + productDetails.imagePath;
 
   return (
-    <div className='product-container col-lg-4 col-md-4 col-sm-6 col-12'>
+    <div className='product-container col-lg-4 col-md-6 col-sm-6 col-12'>
 
       <div className="product-subcontainer" id='product-image'>
         <div className="product-img-subcontainer">
