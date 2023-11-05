@@ -114,6 +114,10 @@ nav .icons .hamburger {
   display: none;
 }
 
+nav .fa-shopping-cart {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 992px) {
   nav {
     grid-template-columns: 1fr 3fr;
