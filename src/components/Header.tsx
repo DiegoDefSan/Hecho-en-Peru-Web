@@ -1,12 +1,16 @@
-import React from "react";
 import '../assets/styles/components/header.css';
 import { Link } from "react-router-dom";
+import { useContext } from 'react';
+import { SidebarContext } from '../contexts/SidebarContext';
+import { SidebarComponent } from './SidebarComponent';
 
 interface Props {
   activeLink: string;
 }
 
 export const Header = ({ activeLink }: Props) => {
+
+  const { isOpen, setIsOpen }: any = useContext(SidebarContext);
 
   return (
     <header>
@@ -29,7 +33,16 @@ export const Header = ({ activeLink }: Props) => {
         </div>
         <div className="icons d-flex justify-content-around">
 
-          <i id="cart-icon" className="fas fa-shopping-cart"></i>
+          <i
+            id="cart-icon"
+            className="fas fa-shopping-cart"
+            onClick={
+              () => {
+                setIsOpen(!isOpen);
+              }
+            }></i>
+
+          <SidebarComponent />
 
           <a href="./public/login.html"><i className="fas fa-user"></i></a>
           <i className="fa-solid fa-bars hamburger inactive"></i>
