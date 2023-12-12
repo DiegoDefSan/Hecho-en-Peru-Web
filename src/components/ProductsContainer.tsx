@@ -13,7 +13,7 @@ export const ProductsContainer = (props: Props) => {
   });
 
   return (
-    <div className="products-container col-md-9 col-sm-12 row">
+    <div className="products-container row">
       {productsContainerElementHTML}
     </div>
   );
