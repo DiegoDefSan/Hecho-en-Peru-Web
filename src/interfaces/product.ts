@@ -3,7 +3,7 @@ import Handcraft from "./handcraft";
 import Region from "./region";
 
 interface Product {
-  idProduct: string;
+  idProduct?: string;
   name: string;
   price: number;
   stock: number;
