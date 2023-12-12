@@ -1,13 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import Category from "../interfaces/category";
-import axios from "axios";
+import useApi from "./useApi";
+import { GET_CATEGORIES_PATH } from "../util/constants";
 
-const useCategories = () => useQuery({
-  queryKey: ["categories"],
-  queryFn: () => axios
-    .get<Category[]>("http://localhost:8080/categories")
-    .then(res => res.data),
-  staleTime: 10_000, // 10 seconds
-});
+const useCategories = () => {
+  const { getObjects } = useApi<Category>(GET_CATEGORIES_PATH);
+
+  return useQuery({
+    queryKey: ["categories"],
+    queryFn: () => getObjects(),
+    staleTime: 10_000,
+  });
+}
 
 export default useCategories;
