@@ -1,13 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import Handcraft from "../interfaces/handcraft";
-import axios from "axios";
+import useApi from "./useApi";
+import { GET_HANDCRAFTS_PATH } from "../util/constants";
 
-const useHandcrafts = () => useQuery({
-  queryKey: ["handcrafts"],
-  queryFn: () => axios
-    .get<Handcraft[]>("http://localhost:8080/handcrafts")
-    .then(res => res.data),
-  staleTime: 10_000, // 10 seconds
-});
+const useHandcrafts = () => {
+  const { getObjects } = useApi<Handcraft>(GET_HANDCRAFTS_PATH);
+
+  return useQuery({
+    queryKey: ["handcrafts"],
+    queryFn: () => getObjects,
+    staleTime: 10_000, // 10 seconds
+  });
+};
 
 export default useHandcrafts;
