@@ -164,3 +164,29 @@
 .pagination .page-number {
   padding: 0 12px;
 }
+
+.catalog-container .btn-add-product {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.2rem;
+  padding: .8rem;
+}
+
+.catalog-container .btn-add-product #new-product-button {
+  background-color: #F9C846;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.3rem;
+}
+
+.catalog-container .btn-add-product #new-product-button:hover {
+  background-color: #FBC431;
+  color: #000000;
+  box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1019607843);
+}

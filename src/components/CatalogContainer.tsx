@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Category from "../interfaces/category";
 import Region from "../interfaces/region";
 import Product from "../interfaces/product";
@@ -117,6 +118,9 @@ export const CatalogContainer = (props: ApiProps) => {
           {lastPage !== 1 && <div className="page-number">{page}</div>}
           {page !== lastPage && <button className="arrow-paging" onClick={nextPage}>{'>'}</button>}
         </div>
+      </div>
+      <div className="btn-add-product">
+        <Link to="/new-product"><button id="new-product-button">Add new product</button></Link>
       </div>
     </div>
   )
