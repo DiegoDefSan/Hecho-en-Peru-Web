@@ -8,7 +8,7 @@ const useHandcrafts = () => {
 
   return useQuery({
     queryKey: ["handcrafts"],
-    queryFn: () => getObjects,
+    queryFn: () => getObjects(),
     staleTime: 10_000, // 10 seconds
   });
 };
