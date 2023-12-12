@@ -1,5 +1,5 @@
 interface Handcraft {
-  id: string;
+  idHandcraft: string;
   name: string;
   history: string;
 }
