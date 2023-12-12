@@ -140,3 +140,27 @@
   margin: auto;
   margin-top: 0;
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.pagination .arrow-paging {
+  padding: 0 12px;
+  background-color: #83807D;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.pagination .arrow-paging:hover {
+  background-color: #5F5D5B;
+}
+
+.pagination .page-number {
+  padding: 0 12px;
+}
