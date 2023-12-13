@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "../assets/styles/components/footer.css";
 
@@ -6,7 +5,7 @@ export const Footer = () => {
   return (
     <footer>
       <div className="logo d-flex justify-content-center align-items-center">
-        <a className="text-decoration-none" href="#"><img src="./images/logo-footer.png"
+        <a className="text-decoration-none" href="#"><img src="/images/logo-footer.png"
           alt="Logo de Hecho en Perú" /></a>
       </div>
       <div className="footer-navigation">

@@ -16,7 +16,7 @@ export const Header = ({ activeLink }: Props) => {
     <header>
       <nav>
         <div className="logo">
-          <a href="#"><img src="./images/logo-navbar.png" alt="Logo de Hecho en Perú" /></a>
+          <a href="#"><img src="/images/logo-navbar.png" alt="Logo de Hecho en Perú" /></a>
         </div>
         <div className="nav-responsive">
           <div className="menu d-flex justify-content-around">
