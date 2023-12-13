@@ -8,6 +8,8 @@ import Product from "../interfaces/product";
 import { zodResolver } from "@hookform/resolvers/zod";
 import productSchema, { formProductValidation } from "../util/formProductValidation";
 
+import '../assets/styles/components/form_container.css'
+
 export const NewProductForm = () => {
 
   const {
@@ -73,13 +75,13 @@ export const NewProductForm = () => {
   return (
     <div className="form-container">
       <form className="form" onSubmit={handleSubmit(submitNewProduct)}>
-        <div className="col">
-          <div className="col-xl-6">
-            <div className="row mb-2">
-              <label htmlFor="name" className="col-xl-2 fw-bold">
+        <div className="form-subcontainer">
+          <div className="input-container">
+            <div className="row-input-container">
+              <label htmlFor="name" className="label-subcontainer fw-bold">
                 Name
               </label>
-              <div className="col-xl-10">
+              <div className="input-subcontainer">
                 <input
                   {...register("name")}
                   type="text"
@@ -95,12 +97,12 @@ export const NewProductForm = () => {
             </div>
           </div>
 
-          <div className="col-xl-6">
-            <div className="row mb-2">
-              <label htmlFor="price" className="col-xl-2 fw-bold">
+          <div className="input-container">
+            <div className="row-input-container">
+              <label htmlFor="price" className="label-subcontainer fw-bold">
                 Price
               </label>
-              <div className="col-xl-10">
+              <div className="input-subcontainer">
                 <input
                   {...register("price", { valueAsNumber: true })}
                   type="number"
@@ -118,12 +120,12 @@ export const NewProductForm = () => {
             </div>
           </div>
 
-          <div className="col-xl-6">
-            <div className="row mb-2">
-              <label htmlFor="stock" className="col-xl-2 fw-bold">
+          <div className="input-container">
+            <div className="row-input-container">
+              <label htmlFor="stock" className="label-subcontainer fw-bold">
                 Stock
               </label>
-              <div className="col-xl-10">
+              <div className="input-subcontainer">
                 <input
                   {...register("stock", { valueAsNumber: true })}
                   type="number"
@@ -141,12 +143,12 @@ export const NewProductForm = () => {
             </div>
           </div>
 
-          <div className="col-xl-6">
-            <div className="row mb-2">
-              <label htmlFor="imagePath" className="col-xl-2 fw-bold">
+          <div className="input-container">
+            <div className="row-input-container">
+              <label htmlFor="imagePath" className="label-subcontainer fw-bold">
                 Image path
               </label>
-              <div className="col-xl-10">
+              <div className="input-subcontainer">
                 <input
                   {...register("imagePath")}
                   type="text"
@@ -162,12 +164,12 @@ export const NewProductForm = () => {
             </div>
           </div>
 
-          <div className="col-xl-6">
-            <div className="row mb-2">
-              <label htmlFor="rating" className="col-xl-2 fw-bold">
+          <div className="input-container">
+            <div className="row-input-container">
+              <label htmlFor="rating" className="label-subcontainer fw-bold">
                 Rating
               </label>
-              <div className="col-xl-10">
+              <div className="input-subcontainer">
                 <input
                   {...register("rating", { valueAsNumber: true })}
                   type="number"
@@ -185,12 +187,12 @@ export const NewProductForm = () => {
             </div>
           </div>
 
-          <div className="col-xl-6">
-            <div className="row mb-2">
-              <label htmlFor="history" className="col-xl-2 fw-bold">
+          <div className="input-container">
+            <div className="row-input-container">
+              <label htmlFor="history" className="label-subcontainer fw-bold">
                 History
               </label>
-              <div className="col-xl-10">
+              <div className="input-subcontainer">
                 <input
                   {...register("history")}
                   type="text"
@@ -206,12 +208,12 @@ export const NewProductForm = () => {
             </div>
           </div>
 
-          <div className="col-xl-6">
-            <div className="row mb-2">
-              <label htmlFor="details" className="col-xl-2 fw-bold">
+          <div className="input-container">
+            <div className="row-input-container">
+              <label htmlFor="details" className="label-subcontainer fw-bold">
                 Details
               </label>
-              <div className="col-xl-10">
+              <div className="input-subcontainer">
                 <input
                   {...register("details")}
                   type="text"
@@ -227,12 +229,12 @@ export const NewProductForm = () => {
             </div>
           </div>
 
-          <div className="col-xl-6">
-            <div className="row mb-2">
-              <label htmlFor="category" className="col-xl-2 fw-bold">
+          <div className="input-container">
+            <div className="row-input-container">
+              <label htmlFor="category" className="label-subcontainer fw-bold">
                 Category
               </label>
-              <div className="col-xl-10">
+              <div className="input-subcontainer">
                 <select
                   {...register("category")}
                   id="category"
@@ -254,12 +256,12 @@ export const NewProductForm = () => {
             </div>
           </div>
 
-          <div className="col-xl-6">
-            <div className="row mb-2">
-              <label htmlFor="region" className="col-xl-2 fw-bold">
+          <div className="input-container">
+            <div className="row-input-container">
+              <label htmlFor="region" className="label-subcontainer fw-bold">
                 Region
               </label>
-              <div className="col-xl-10">
+              <div className="input-subcontainer">
                 <select
                   {...register("region")}
                   id="region"
@@ -281,12 +283,12 @@ export const NewProductForm = () => {
             </div>
           </div>
 
-          <div className="col-xl-6">
-            <div className="row mb-2">
-              <label htmlFor="handcraft" className="col-xl-2 fw-bold">
+          <div className="input-container">
+            <div className="row-input-container">
+              <label htmlFor="handcraft" className="label-subcontainer fw-bold">
                 Handcraft
               </label>
-              <div className="col-xl-10">
+              <div className="input-subcontainer">
                 <select
                   {...register("handcraft")}
                   id="handcraft"
@@ -308,16 +310,10 @@ export const NewProductForm = () => {
             </div>
           </div>
 
-          <div className="row mb-5">
-            <div className="col-xl-6">
-              <div className="row">
-                <div className="col-xl-10 offset-xl-2">
-                  <button id="button" type="submit" className="btn btn-primary btn-sm">
-                    Register
-                  </button>
-                </div>
-              </div>
-            </div>
+          <div className="button-container">
+            <button id="button" type="submit" className="btn-submit-product">
+              Register
+            </button>
           </div>
 
         </div>
