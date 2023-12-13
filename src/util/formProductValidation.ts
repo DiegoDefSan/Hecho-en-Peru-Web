@@ -27,9 +27,15 @@ const productSchema = z.object({
   details: z
     .string()
     .min(1, { message: "The product name must be introduced." }),
-  category: z.string(),
-  region: z.string(),
-  handcraft: z.string(),
+  category: z
+    .string()
+    .min(2, { message: "A category must be chosen." }),
+  region: z
+    .string()
+    .min(2, { message: "A region must be chosen." }),
+  handcraft: z
+    .string()
+    .min(2, { message: "A handcraft must be chosen." }),
 })
 
 export default productSchema;
