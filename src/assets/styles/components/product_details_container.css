@@ -260,3 +260,25 @@
   text-align: justify;
   opacity: 70%;
 }
+
+.action-buttons-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.action-buttons-container .buttons-subcontainer {
+  display: flex;
+  padding: 2rem 0;
+  justify-content: space-around;
+}
+
+.action-buttons-container .buttons-subcontainer .action-api-button {
+  padding: .6em 1.2em;
+  background-color: #A9E5BB;
+  border: none;
+  border-radius: 6px;
+}
+
+.action-buttons-container .buttons-subcontainer #btn-delete {
+  background-color: red;
+}

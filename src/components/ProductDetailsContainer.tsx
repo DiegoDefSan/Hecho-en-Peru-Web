@@ -90,6 +90,13 @@ export const ProductDetailsContainer: React.FC<{ product: Product }> = ({ produc
         </div>
       </section>
 
+      <section className="action-buttons-container">
+        <div className="buttons-subcontainer">
+          <button className="action-api-button" id="btn-modify">Modify</button>
+          <button className="action-api-button" id="btn-delete">Delete</button>
+        </div>
+      </section>
+
 
     </main>
   )
