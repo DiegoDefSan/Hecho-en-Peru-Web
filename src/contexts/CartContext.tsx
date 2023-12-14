@@ -38,6 +38,29 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     }
   }
 
+  const addAnAmountToCart = (product: Product, quantity: number) => {
+    const newItem = { ...product, amount: quantity } as ItemInCart;
+
+    // check if the item is already in the cart
+    const itemInCart = cart.find((item: ItemInCart) => item.idProduct === product.idProduct);
+
+    if (itemInCart) {
+      const newCart = cart.map((item: ItemInCart) => {
+        if (item.idProduct === product.idProduct) {
+          return {
+            ...item,
+            amount: quantity,
+          };
+        }
+        return item;
+      });
+
+      setCart(newCart);
+    } else {
+      setCart([...cart, newItem]);
+    }
+  }
+
   const removeItem = (id: string) => {
     const newCart = cart.filter((item: ItemInCart) => item.idProduct !== id);
     setCart(newCart);
@@ -71,7 +94,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeItem, addOneItem, removeOneItem }}>
+    <CartContext.Provider value={{ cart, addToCart, removeItem, addOneItem, removeOneItem, addAnAmountToCart }}>
       {children}
     </CartContext.Provider>
   )
