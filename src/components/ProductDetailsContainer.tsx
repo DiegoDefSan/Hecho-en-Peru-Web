@@ -4,6 +4,8 @@ import Product from "../interfaces/product"
 import '../assets/styles/components/product_details_container.css'
 import { useContext, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
+import useDeleteProduct from "../hooks/useDeleteProduct";
+import { PopUp } from "./PopUp";
 
 export const ProductDetailsContainer: React.FC<{ product: Product }> = ({ product }) => {
 
@@ -12,12 +14,28 @@ export const ProductDetailsContainer: React.FC<{ product: Product }> = ({ produc
 
   const { addAnAmountToCart }: any = useContext(CartContext);
 
+  const [productDeleted, setProductDeleted] = useState(false);
+
   const {
     idProduct, name, price, stock, imagePath, rating, history, details, region, handcraft
   } = product;
 
+  const {
+    mutate: removeProduct,
+    error: removeError
+  } = useDeleteProduct();
+
+  const removeProductHandle = (id: string) => {
+    removeProduct(id);
+
+    setProductDeleted(true);
+  }
+
+  if (removeError) throw removeError;
+
   return (
     <main>
+      {productDeleted && <PopUp action="delete" />}
       <section className="breadcrumbs">
         <ul>
           <li className="breadcrumbs-item"><Link className="breadcrumbs-link" to='/'>Home</Link></li>
@@ -93,7 +111,7 @@ export const ProductDetailsContainer: React.FC<{ product: Product }> = ({ produc
       <section className="action-buttons-container">
         <div className="buttons-subcontainer">
           <button className="action-api-button" id="btn-modify">Modify</button>
-          <button className="action-api-button" id="btn-delete">Delete</button>
+          <button className="action-api-button" id="btn-delete" onClick={() => removeProductHandle(product.idProduct!)}>Delete</button>
         </div>
       </section>
 
