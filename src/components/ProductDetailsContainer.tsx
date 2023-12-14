@@ -2,8 +2,15 @@ import { Link } from "react-router-dom";
 import Product from "../interfaces/product"
 
 import '../assets/styles/components/product_details_container.css'
+import { useContext, useState } from "react";
+import { CartContext } from "../contexts/CartContext";
 
 export const ProductDetailsContainer: React.FC<{ product: Product }> = ({ product }) => {
+
+  const initialNumberItems = 1;
+  const [numberItems, setNumberItems] = useState(initialNumberItems);
+
+  const { addAnAmountToCart }: any = useContext(CartContext);
 
   const {
     idProduct, name, price, stock, imagePath, rating, history, details, region, handcraft
@@ -42,15 +49,15 @@ export const ProductDetailsContainer: React.FC<{ product: Product }> = ({ produc
 
           <h4>Quantity</h4>
           <div className="cantidad">
-            <button className="info-minus">-</button>
-            <input type="number" className="info-unidades-selected" value="1"></input>
-            <button className="info-plus">+</button>
+            <button className="info-minus" onClick={() => { numberItems !== 1 ? setNumberItems(prev => prev - 1) : null }}>-</button>
+            <span className="info-unidades-selected">{numberItems}</span>
+            <button className="info-plus" onClick={() => { numberItems < stock ? setNumberItems(prev => prev + 1) : null }}>+</button>
           </div>
           <div className="stock-producto">
             <h4>Stock: </h4>
             <span>{stock} availables</span>
           </div>
-          <button className="agregar-carrito">
+          <button className="agregar-carrito" onClick={() => { addAnAmountToCart(product, numberItems) }}>
             <span>Add to cart</span>
             <i className="fa-solid fa-cart-shopping"></i>
           </button>
