@@ -6,6 +6,7 @@ import { AboutUs } from "../pages/AboutUs";
 import { ContactUs } from "../pages/ContactUs";
 import { Layout } from "./Layout";
 import { NewProductPage } from "../pages/NewProductPage";
+import { ProductDetailsPage } from "../pages/ProductDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
       { path: "/regions", element: <Regions /> },
       { path: "/about-us", element: <AboutUs /> },
       { path: "/contact-us", element: <ContactUs /> },
-      { path: "/new-product", element: <NewProductPage /> }
+      { path: "/new-product", element: <NewProductPage /> },
+      { path: "/catalog/product/:idProduct", element: <ProductDetailsPage /> }
     ]
   }
 ]);
