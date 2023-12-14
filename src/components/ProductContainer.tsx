@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import '../assets/styles/components/product_container.css'
 import { CartContext } from '../contexts/CartContext';
 import Product from '../interfaces/product';
+import { Link } from 'react-router-dom';
 
 interface Props {
   product: Product;
@@ -26,7 +27,9 @@ export const ProductContainer = ({ product }: Props) => {
 
       <div className="product-subcontainer" id='product-image'>
         <div className="product-img-subcontainer">
-          <img src={`${productImageLocationPath}`} className="product-img" alt={`${productDetails.name}`} />
+          <Link to={`product/${productDetails.idProduct}`}>
+            <img src={`${productImageLocationPath}`} className="product-img" alt={`${productDetails.name}`} />
+          </Link>
         </div>
         <div className="rating">
           <i className="fa-solid fa-star"></i>
