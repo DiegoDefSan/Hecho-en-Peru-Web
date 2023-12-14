@@ -38,6 +38,23 @@ const useApi = <T>(endpoint: string) => {
       })
   }
 
+  const deleteObjectById = (id: string) => {
+    return axiosInstance
+      .delete(`${endpoint}/${id}`)
+      .then(res => res.data)
+      .catch((error) => {
+        if (error.response) {
+          throw error;
+        }
+        else if (error.request) {
+          throw error;
+        }
+        else {
+          throw error;
+        }
+      })
+  }
+
   const postObject = (object: T) => {
     return axiosInstance
       .post<T>(endpoint, object)
@@ -55,7 +72,7 @@ const useApi = <T>(endpoint: string) => {
       })
   }
 
-  return { getObjects, postObject, getObjectById };
+  return { getObjects, postObject, getObjectById, deleteObjectById };
 }
 
 export default useApi;
