@@ -21,6 +21,23 @@ const useApi = <T>(endpoint: string) => {
       })
   }
 
+  const getObjectById = (id?: string) => {
+    return axiosInstance
+      .get<T>(`${endpoint}/${id ? id : ""}`)
+      .then(res => res.data)
+      .catch((error) => {
+        if (error.response) {
+          throw error;
+        }
+        else if (error.request) {
+          throw error;
+        }
+        else {
+          throw error;
+        }
+      })
+  }
+
   const postObject = (object: T) => {
     return axiosInstance
       .post<T>(endpoint, object)
@@ -38,7 +55,7 @@ const useApi = <T>(endpoint: string) => {
       })
   }
 
-  return { getObjects, postObject };
+  return { getObjects, postObject, getObjectById };
 }
 
 export default useApi;
