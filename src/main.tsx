@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { CartProvider } from './contexts/CartContext.tsx'
 import { SidebarProvider } from './contexts/SidebarContext.tsx'
+import { ProductModifyingProvider } from './contexts/ProductModifyingContext.tsx'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,12 +21,14 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <SidebarProvider>
     <CartProvider>
-      <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-          <ReactQueryDevtools />
-        </QueryClientProvider>
-      </React.StrictMode>,
+      <ProductModifyingProvider>
+        <React.StrictMode>
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+            <ReactQueryDevtools />
+          </QueryClientProvider>
+        </React.StrictMode>,
+      </ProductModifyingProvider>
     </CartProvider>
   </SidebarProvider>
 )
