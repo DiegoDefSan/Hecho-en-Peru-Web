@@ -72,7 +72,24 @@ const useApi = <T>(endpoint: string) => {
       })
   }
 
-  return { getObjects, postObject, getObjectById, deleteObjectById };
+  const putObject = (object: T) => {
+    return axiosInstance
+      .put<T>(endpoint, object)
+      .then(res => res.data)
+      .catch((error) => {
+        if (error.response) {
+          throw error;
+        }
+        else if (error.request) {
+          throw error;
+        }
+        else {
+          throw error;
+        }
+      })
+  }
+
+  return { getObjects, postObject, getObjectById, deleteObjectById, putObject };
 }
 
 export default useApi;
