@@ -9,13 +9,29 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import productSchema, { formProductValidation } from "../util/formProductValidation";
 
 import '../assets/styles/components/form_container.css'
+import { useContext, useState } from "react";
+import { ProductModifyingContext } from "../contexts/ProductModifyingContext";
+import usePutProduct from "../hooks/usePutProduct";
+import { PopUp } from "./PopUp";
 
 export const NewProductForm = () => {
+
+
+  const [algorithmCompleted, setAlgorithmCompleted] = useState(false);
+
+  const { productModifying }: any = useContext(ProductModifyingContext);
+
+  const isRegisteringProduct = productModifying === undefined;
 
   const {
     mutate: postNewProduct,
     error: errorPostNewProduct
   } = usePostProduct();
+
+  const {
+    mutate: putNewProduct,
+    error: errorPutNewProduct
+  } = usePutProduct();
 
   const {
     data: categories,
@@ -34,6 +50,7 @@ export const NewProductForm = () => {
   // }
 
   if (errorPostNewProduct) throw errorPostNewProduct;
+  if (errorPutNewProduct) throw errorPutNewProduct;
 
 
   const {
@@ -43,38 +60,75 @@ export const NewProductForm = () => {
     formState: { errors },
   } = useForm<formProductValidation>({ resolver: zodResolver(productSchema), mode: "onSubmit" });
 
-  const submitNewProduct = ({ name, price, stock, imagePath, rating, history, details, category, region, handcraft }: FieldValues) => {
-    const newProduct: Product = {
-      name: name,
-      price: price,
-      stock: stock,
-      imagePath: imagePath,
-      rating: rating,
-      history: history,
-      details: details,
-      category: {
-        idCategory: category,
-        name: ""
-      },
-      region: {
-        idRegion: region,
-        name: ""
-      },
-      handcraft: {
-        idHandcraft: handcraft,
-        name: "",
-        history: ""
+  let submitNewProduct;
+  let submitModifiedProduct;
+  if (isRegisteringProduct) {
+    submitNewProduct = ({ name, price, stock, imagePath, rating, history, details, category, region, handcraft }: FieldValues) => {
+      const newProduct: Product = {
+        name: name,
+        price: price,
+        stock: stock,
+        imagePath: imagePath,
+        rating: rating,
+        history: history,
+        details: details,
+        category: {
+          idCategory: category,
+          name: ""
+        },
+        region: {
+          idRegion: region,
+          name: ""
+        },
+        handcraft: {
+          idHandcraft: handcraft,
+          name: "",
+          history: ""
+        }
       }
+
+      postNewProduct(newProduct);
+      reset();
+
+      setAlgorithmCompleted(true);
     }
+  } else {
+    submitModifiedProduct = ({ name, price, stock, imagePath, rating, history, details, category, region, handcraft }: FieldValues) => {
+      const modifiedProduct: Product = {
+        idProduct: productModifying.idProduct,
+        name: name,
+        price: price,
+        stock: stock,
+        imagePath: imagePath,
+        rating: rating,
+        history: history,
+        details: details,
+        category: {
+          idCategory: category,
+          name: ""
+        },
+        region: {
+          idRegion: region,
+          name: ""
+        },
+        handcraft: {
+          idHandcraft: handcraft,
+          name: "",
+          history: ""
+        }
+      }
 
-    postNewProduct(newProduct);
-    reset();
+      putNewProduct(modifiedProduct);
+      reset();
+
+      setAlgorithmCompleted(true);
+    }
   }
-
 
   return (
     <div className="form-container">
-      <form className="form" onSubmit={handleSubmit(submitNewProduct)}>
+      {algorithmCompleted && <PopUp action={isRegisteringProduct ? 'POST' : 'PUT'} />}
+      <form className="form" onSubmit={handleSubmit(isRegisteringProduct ? submitNewProduct! : submitModifiedProduct!)}>
         <div className="form-subcontainer">
           <div className="input-container">
             <div className="row-input-container">
@@ -86,6 +140,7 @@ export const NewProductForm = () => {
                   {...register("name")}
                   type="text"
                   id="name"
+                  defaultValue={isRegisteringProduct ? null : productModifying.name}
                   className={
                     errors.name
                       ? "form-control form-control-sm is-invalid"
@@ -109,6 +164,7 @@ export const NewProductForm = () => {
                   step="0.01"
                   min="0"
                   id="price"
+                  defaultValue={isRegisteringProduct ? null : productModifying.price}
                   className={
                     errors.price
                       ? "form-control form-control-sm is-invalid"
@@ -132,6 +188,7 @@ export const NewProductForm = () => {
                   step="1"
                   min="0"
                   id="stock"
+                  defaultValue={isRegisteringProduct ? null : productModifying.stock}
                   className={
                     errors.stock
                       ? "form-control form-control-sm is-invalid"
@@ -153,6 +210,7 @@ export const NewProductForm = () => {
                   {...register("imagePath")}
                   type="text"
                   id="imagePath"
+                  defaultValue={isRegisteringProduct ? null : productModifying.imagePath}
                   className={
                     errors.imagePath
                       ? "form-control form-control-sm is-invalid"
@@ -176,6 +234,7 @@ export const NewProductForm = () => {
                   step="0.1"
                   min="0.1"
                   id="rating"
+                  defaultValue={isRegisteringProduct ? null : productModifying.rating}
                   className={
                     errors.rating
                       ? "form-control form-control-sm is-invalid"
@@ -197,6 +256,7 @@ export const NewProductForm = () => {
                   {...register("history")}
                   type="text"
                   id="history"
+                  defaultValue={isRegisteringProduct ? null : productModifying.history}
                   className={
                     errors.history
                       ? "form-control form-control-sm is-invalid"
@@ -218,6 +278,7 @@ export const NewProductForm = () => {
                   {...register("details")}
                   type="text"
                   id="details"
+                  defaultValue={isRegisteringProduct ? null : productModifying.details}
                   className={
                     errors.details
                       ? "form-control form-control-sm is-invalid"
@@ -246,7 +307,7 @@ export const NewProductForm = () => {
                 >
                   <option value="0">Select a category</option>
                   {categories?.map((category) => (
-                    <option key={category.idCategory} value={category.idCategory}>
+                    <option key={category.idCategory} value={category.idCategory} selected={isRegisteringProduct ? false : category.idCategory === productModifying.category.idCategory}>
                       {category.name}
                     </option>
                   ))}
@@ -273,7 +334,7 @@ export const NewProductForm = () => {
                 >
                   <option value="0">Select a region</option>
                   {regions?.map((region) => (
-                    <option key={region.idRegion} value={region.idRegion}>
+                    <option key={region.idRegion} value={region.idRegion} selected={isRegisteringProduct ? false : region.name === productModifying.region.name}>
                       {region.name}
                     </option>
                   ))}
@@ -300,7 +361,7 @@ export const NewProductForm = () => {
                 >
                   <option value="0">Select a handcraft</option>
                   {handcrafts?.map((handcraft) => (
-                    <option key={handcraft.idHandcraft} value={handcraft.idHandcraft}>
+                    <option key={handcraft.idHandcraft} value={handcraft.idHandcraft} selected={isRegisteringProduct ? false : handcraft.name === productModifying.handcraft.name}>
                       {handcraft.name}
                     </option>
                   ))}
