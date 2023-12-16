@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Category from "../interfaces/category";
 import Region from "../interfaces/region";
@@ -7,6 +7,7 @@ import { FiltersContainer } from "./FiltersContainer";
 import { ProductsContainer } from "./ProductsContainer";
 
 import '../assets/styles/components/catalog_container.css';
+import { ProductModifyingContext } from "../contexts/ProductModifyingContext";
 
 interface ApiProps {
   categories: Category[];
@@ -32,6 +33,7 @@ export const CatalogContainer = (props: ApiProps) => {
     setPage(prevPage => prevPage - 1);
   }
 
+  const { assignModifyingProduct }: any = useContext(ProductModifyingContext);
 
   const [filterData, setFilterData] = useState({
     sortBy: "rating-desc",
@@ -120,7 +122,7 @@ export const CatalogContainer = (props: ApiProps) => {
         </div>
       </div>
       <div className="btn-add-product">
-        <Link to="/new-product"><button id="new-product-button">Add new product</button></Link>
+        <Link to="/new-product"><button id="new-product-button" onClick={() => { assignModifyingProduct(undefined) }}>Add new product</button></Link>
       </div>
     </div>
   )
