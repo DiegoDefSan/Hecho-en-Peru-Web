@@ -3,6 +3,7 @@ import { SidebarContext } from "../contexts/SidebarContext";
 
 import '../assets/styles/components/sidebar_container.css'
 import { CartContext, ItemInCart } from "../contexts/CartContext";
+import { Link } from "react-router-dom";
 
 export const SidebarComponent = () => {
   const { isOpen, handleClose }: any = useContext(SidebarContext);
@@ -66,9 +67,11 @@ export const SidebarComponent = () => {
 
         }</div>
       </div>
-      <button type="button" className="btn-buy-cart">
-        Buy now
-      </button>
+      <Link to='/payment'>
+        <button type="button" className="btn-buy-cart">
+          Buy now
+        </button>
+      </Link>
       <button id="close-cart">
         <i className="fa-solid fa-xmark" onClick={() => { handleClose() }}></i>
       </button>
