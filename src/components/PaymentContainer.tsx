@@ -7,6 +7,7 @@ import Product from "../interfaces/product";
 import ProductCart from "../interfaces/product_cart";
 import usePostProductsCarts from "../hooks/product_cart/usePostProductsCarts";
 import useDeleteCart from "../hooks/cart/useDeleteCart";
+import { Link } from "react-router-dom";
 
 export const PaymentContainer = () => {
 
@@ -24,9 +25,9 @@ export const PaymentContainer = () => {
     mutate: postNewProductsCartsList
   } = usePostProductsCarts();
 
-  const recentlyCartCreated = cartsList![cartsList!.length - 1];
 
   const handleBuy = () => {
+    const recentlyCartCreated = cartsList![cartsList!.length - 1];
 
     const productsCartsList = cart.map((item: ItemInCart) => {
       let product: Product = {
@@ -56,6 +57,7 @@ export const PaymentContainer = () => {
   }
 
   const cancelPayment = () => {
+    const recentlyCartCreated = cartsList![cartsList!.length - 1];
 
     deleteCart(recentlyCartCreated.idCart!);
 
@@ -103,7 +105,9 @@ export const PaymentContainer = () => {
         </div>
         <div className="buttons-container">
           <button className="payment-btn" id="buy-btn" onClick={handleBuy}>Buy now</button>
-          <button className="payment-btn" id="ret-btn" onClick={cancelPayment}>Return to shopping</button>
+          <Link to='/catalog'>
+            <button className="payment-btn" id="ret-btn" onClick={cancelPayment}>Return to shopping</button>
+          </Link>
         </div>
       </div>
     </section>
