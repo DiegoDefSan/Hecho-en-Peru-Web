@@ -2,10 +2,64 @@ import { useContext } from "react";
 import { CartContext, ItemInCart } from "../contexts/CartContext";
 
 import '../assets/styles/components/payment_container.css'
+import useGetCarts from "../hooks/cart/useGetCarts";
+import Product from "../interfaces/product";
+import ProductCart from "../interfaces/product_cart";
+import usePostProductsCarts from "../hooks/product_cart/usePostProductsCarts";
+import useDeleteCart from "../hooks/cart/useDeleteCart";
 
 export const PaymentContainer = () => {
 
   const { cart }: any = useContext(CartContext);
+
+  const {
+    data: cartsList
+  } = useGetCarts();
+
+  const {
+    mutate: deleteCart
+  } = useDeleteCart();
+
+  const {
+    mutate: postNewProductsCartsList
+  } = usePostProductsCarts();
+
+  const recentlyCartCreated = cartsList![cartsList!.length - 1];
+
+  const handleBuy = () => {
+
+    const productsCartsList = cart.map((item: ItemInCart) => {
+      let product: Product = {
+        idProduct: item.idProduct,
+        name: item.name,
+        price: item.price,
+        stock: item.stock,
+        imagePath: item.imagePath,
+        rating: item.rating,
+        history: item.history,
+        details: item.details,
+        category: item.category,
+        region: item.region,
+        handcraft: item.handcraft
+      }
+
+      let productInCart: ProductCart = {
+        cart: recentlyCartCreated,
+        product: product,
+        quantity: item.amount
+      }
+
+      return productInCart;
+    })
+
+    postNewProductsCartsList(productsCartsList)
+  }
+
+  const cancelPayment = () => {
+
+    deleteCart(recentlyCartCreated.idCart!);
+
+  }
 
   const itemContainerHTML = (item: ItemInCart) => {
     return (
@@ -48,8 +102,8 @@ export const PaymentContainer = () => {
           }</div>
         </div>
         <div className="buttons-container">
-          <button className="payment-btn" id="buy-btn">Buy now</button>
-          <button className="payment-btn" id="ret-btn">Return to shopping</button>
+          <button className="payment-btn" id="buy-btn" onClick={handleBuy}>Buy now</button>
+          <button className="payment-btn" id="ret-btn" onClick={cancelPayment}>Return to shopping</button>
         </div>
       </div>
     </section>
