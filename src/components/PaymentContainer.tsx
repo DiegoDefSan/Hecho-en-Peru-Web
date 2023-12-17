@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext, ItemInCart } from "../contexts/CartContext";
 
 import '../assets/styles/components/payment_container.css'
@@ -8,10 +8,12 @@ import ProductCart from "../interfaces/product_cart";
 import usePostProductsCarts from "../hooks/product_cart/usePostProductsCarts";
 import useDeleteCart from "../hooks/cart/useDeleteCart";
 import { Link } from "react-router-dom";
+import { PopUp } from "./PopUp";
 
 export const PaymentContainer = () => {
 
-  const { cart }: any = useContext(CartContext);
+  const { cart, removeItems }: any = useContext(CartContext);
+  const [paymentFinished, setPaymentFinished] = useState(false);
 
   const {
     data: cartsList
@@ -54,6 +56,10 @@ export const PaymentContainer = () => {
     })
 
     postNewProductsCartsList(productsCartsList)
+
+    removeItems();
+
+    setPaymentFinished(true);
   }
 
   const cancelPayment = () => {
@@ -81,6 +87,7 @@ export const PaymentContainer = () => {
 
   return (
     <section className="payment-container">
+      {paymentFinished && <PopUp action={"payment"} />}
       <div className="payment-subcontainer">
         <h3>My products</h3>
         <div className="cart-items">
