@@ -4,11 +4,32 @@ import { SidebarContext } from "../contexts/SidebarContext";
 import '../assets/styles/components/sidebar_container.css'
 import { CartContext, ItemInCart } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
+import useGetUserById from "../hooks/user/useGetUser";
+import { USER_ID } from "../util/constants";
+import usePostCart from "../hooks/cart/usePostCart";
+import Cart from "../interfaces/cart";
 
 export const SidebarComponent = () => {
   const { isOpen, handleClose }: any = useContext(SidebarContext);
 
   const { cart, removeItem, addOneItem, removeOneItem }: any = useContext(CartContext);
+
+  const {
+    data: user
+  } = useGetUserById(USER_ID);
+
+  const {
+    mutate: postNewCart
+  } = usePostCart();
+
+  const addNewCart = () => {
+    const newCart: Cart = {
+      date: new Date(),
+      user: user!
+    }
+
+    postNewCart(newCart);
+  }
 
   const itemContainerHTML = (item: ItemInCart) => {
     return (
@@ -68,7 +89,7 @@ export const SidebarComponent = () => {
         }</div>
       </div>
       <Link to='/payment'>
-        <button type="button" className="btn-buy-cart">
+        <button type="button" className="btn-buy-cart" onClick={() => { addNewCart() }}>
           Buy now
         </button>
       </Link>
