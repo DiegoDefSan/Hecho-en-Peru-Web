@@ -89,7 +89,7 @@ export const SidebarComponent = () => {
         }</div>
       </div>
       <Link to='/payment'>
-        <button type="button" className="btn-buy-cart" onClick={() => { addNewCart() }}>
+        <button type="button" className="btn-buy-cart" onClick={() => { addNewCart() }} disabled={cart.length === 0}>
           Buy now
         </button>
       </Link>
