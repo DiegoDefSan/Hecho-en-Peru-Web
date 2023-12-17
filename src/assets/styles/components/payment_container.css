@@ -1,12 +1,15 @@
 @import url('../general.css');
 
 .payment-container {
-  margin: auto;
-  max-width: 44%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .payment-container .payment-subcontainer {
-  padding: 40px 0;
+  width: 44%;
+  margin: 1.2rem 0;
+  height: 90vh;
 }
 
 .payment-container .payment-subcontainer h4 {
