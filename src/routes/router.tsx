@@ -7,6 +7,7 @@ import { ContactUs } from "../pages/ContactUs";
 import { Layout } from "./Layout";
 import { NewProductPage } from "../pages/NewProductPage";
 import { ProductDetailsPage } from "../pages/ProductDetailsPage";
+import { Payment } from "../pages/Payment";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,8 @@ const router = createBrowserRouter([
       { path: "/about-us", element: <AboutUs /> },
       { path: "/contact-us", element: <ContactUs /> },
       { path: "/new-product", element: <NewProductPage /> },
-      { path: "/catalog/product/:idProduct", element: <ProductDetailsPage /> }
+      { path: "/catalog/product/:idProduct", element: <ProductDetailsPage /> },
+      { path: "payment", element: <Payment /> }
     ]
   }
 ]);
