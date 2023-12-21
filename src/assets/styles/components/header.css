@@ -1,0 +1,184 @@
+@import url("../general.css");
+
+header {
+  box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1019607843);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 0.3fr 2fr 0.3fr;
+  grid-template-areas: "logo responsive iconos";
+  align-items: center;
+  text-align: center;
+  background-color: #FFFFFF;
+  color: #000000;
+  height: 5rem;
+  padding: 0 3rem;
+  box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1019607843);
+}
+
+nav a {
+  text-decoration: none;
+  color: #000000;
+}
+
+nav .logo {
+  grid-area: logo;
+}
+
+nav .nav-responsive {
+  display: grid;
+  grid-template-columns: 4fr 4fr;
+  grid-template-areas: "secciones buscador";
+  align-items: center;
+  grid-area: responsive;
+}
+
+nav .nav-responsive .menu {
+  grid-area: secciones;
+  height: 3.1rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+nav .nav-responsive .menu .menu-item {
+  font-size: 1rem;
+}
+
+nav .nav-responsive .menu .menu-item:hover {
+  color: #E46953;
+  border-bottom: 0.2rem solid #E09898;
+  padding-bottom: 0.2rem;
+}
+
+nav .nav-responsive .menu .menu-item.active {
+  color: #E46953;
+  border-bottom: 0.2rem solid #E09898;
+  padding-bottom: 0.2rem;
+}
+
+nav .nav-responsive .search-bar {
+  grid-area: buscador;
+}
+
+nav .nav-responsive .search-bar input[type=text] {
+  height: 2rem;
+  width: 40%;
+  border: none;
+  background-color: #F3F3F3;
+  margin-right: 0.3rem;
+  font-size: 1rem;
+  padding: 0 0.6rem;
+  border-radius: 0.3rem;
+}
+
+nav .nav-responsive .search-bar button {
+  background-color: #F9C846;
+  border: none;
+  width: 5.6rem;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 2rem;
+  margin-right: 0.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0 0.6rem;
+  border-radius: 0.3rem;
+}
+
+nav .nav-responsive .search-bar button:hover {
+  background-color: #FBC431;
+  color: #000000;
+  box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1019607843);
+}
+
+nav .icons {
+  grid-area: iconos;
+}
+
+nav .icons i {
+  font-size: 1.5rem;
+  padding-inline: 1rem;
+}
+
+nav .icons i:hover {
+  color: rgba(0, 0, 0, 0.5254901961);
+}
+
+nav .icons .hamburger {
+  display: none;
+}
+
+nav .fa-shopping-cart {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+  nav {
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 5rem 6fr;
+    grid-template-areas: "logo iconos" "responsive responsive";
+    padding: 0;
+    box-shadow: none;
+    width: 100%;
+    position: relative;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #000000;
+  }
+
+  nav .logo {
+    grid-area: logo;
+    justify-self: flex-start;
+    margin-left: 2rem;
+  }
+
+  nav .nav-responsive {
+    display: none;
+    grid-area: responsive;
+    align-self: normal;
+    justify-self: normal;
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: inset 0 0.2rem 0.2rem rgba(0, 0, 0, 0.1019607843);
+  }
+
+  nav .nav-responsive .menu {
+    margin-top: 1rem;
+    grid-area: none;
+    line-height: 2.5;
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  nav .nav-responsive .search-bar {
+    grid-area: none;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  nav .nav-responsive .search-bar input[type=text] {
+    width: 70%;
+  }
+
+  nav .nav-responsive.active {
+    display: block;
+  }
+
+  nav .icons {
+    justify-self: flex-end;
+    margin-right: 2rem;
+  }
+
+  nav .icons .hamburger {
+    display: block;
+  }
+
+}

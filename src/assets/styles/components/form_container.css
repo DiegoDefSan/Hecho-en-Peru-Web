@@ -1,0 +1,57 @@
+@import url('../general.css');
+
+.form-container {
+  padding: 24px 0;
+}
+
+.form {
+  max-width: 680px;
+  padding: 2em;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.form-subcontainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-input-container {
+  display: flex;
+  flex-direction: row;
+  margin: .6rem 0;
+  padding: .4rem;
+}
+
+.label-subcontainer {
+  flex: 1.5;
+}
+
+.input-subcontainer {
+  flex: 4;
+}
+
+.button-container {
+  padding: 12px;
+  margin: auto;
+}
+
+.btn-submit-product {
+  background-color: #F9C846;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.4rem 1.4rem;
+  border-radius: 0.3rem;
+}
+
+.btn-submit-product:hover {
+  background-color: #FBC431;
+  color: #000000;
+  box-shadow: 0rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1019607843);
+}
